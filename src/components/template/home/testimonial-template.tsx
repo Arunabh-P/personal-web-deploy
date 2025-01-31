@@ -1,7 +1,10 @@
 'use client';
 import { TestimonialCard } from '@/components/molecule/testimonial-card';
+import { Drawer } from '@/components/organism/drawer';
+import UnderConstruction from '@/components/organism/under-construction';
 import { testimonial } from '@/constants/home/testimonial';
 import { TestimonialDto } from '@/types/testimonial';
+import Image from 'next/image';
 import { FC, useEffect, useState } from 'react';
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from 'react-icons/md';
 
@@ -40,46 +43,67 @@ const TestimonialTemplate: FC<TestimonialTemplateDto> = ({ data }) => {
       setCurrentIndex(currentIndex + 1);
     }
   };
+  const [isOpen, setIsOpen] = useState(false);
+  const handleClose = () => {
+    setIsOpen(false);
+  };
   return (
-    <div className="section-padding  xl:flex">
-      <div className="w-full xl:w-3/12 h-ful flex flex-col justify-center pb-[20px]">
-        <h2 className="font-lora pb-4 font-medium uppercase">
-          {testimonial.title}
-        </h2>
-        <p className="font-normal text-justify">{testimonial.description}</p>
-      </div>
-      <div className="w-full xl:w-9/12 flex justify-center xl:justify-end">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-[20px]">
-          {data
-            .slice(currentIndex, currentIndex + cardsToShow)
-            .map((item, index) => (
-              <TestimonialCard
-                key={index}
-                image={item.image}
-                name={item.name}
-                company={item.company}
-                quote={item.quote}
-              />
-            ))}
-          <div>
-            <button
-              className={`bg-secondary hover:bg-secondary-light text-white p-2 md:p-3 rounded-l-lg ${currentIndex === 0 ? 'opacity-50 cursor-not-allowed' : ''}`}
-              onClick={handlePrev}
-              disabled={currentIndex === 0}
-            >
-              <MdKeyboardArrowLeft className="w-5 h-5" />
-            </button>
-            <button
-              className={`bg-secondary hover:bg-secondary-light text-white p-2 md:p-3 rounded-r-lg  ${disableNext ? 'opacity-50 cursor-not-allowed' : ''}`}
-              onClick={handleNext}
-              disabled={disableNext}
-            >
-              <MdKeyboardArrowRight className="w-5 h-5" />
-            </button>
+    <>
+      <Drawer position="bottom" isOpen={isOpen} onClose={handleClose}>
+        <UnderConstruction />
+      </Drawer>
+      <div className="section-padding  xl:flex">
+        <div className="w-full xl:w-3/12 h-ful flex flex-col justify-center pb-[20px]">
+          <h2 className="font-lora pb-4 font-medium uppercase">
+            {testimonial.title}
+          </h2>
+          <p className="font-normal text-justify">{testimonial.description}</p>
+          <div
+            className="flex justify-start items-center gap-2 mt-5 cursor-pointer"
+            onClick={() => setIsOpen(true)}
+          >
+            <Image
+              src="https://res.cloudinary.com/dku0lexry/image/upload/v1738344984/personal-website/icons/user-experience_kgpxbt.png"
+              alt="testimonial"
+              width={22}
+              height={22}
+            />
+            <p className="font-medium text-secondary">Add Your Voice</p>
+          </div>
+        </div>
+        <div className="w-full xl:w-9/12 flex justify-center xl:justify-end">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-[20px]">
+            {data
+              .slice(currentIndex, currentIndex + cardsToShow)
+              .map((item, index) => (
+                <TestimonialCard
+                  key={index}
+                  image={item.image}
+                  name={item.name}
+                  company={item.company}
+                  quote={item.quote}
+                />
+              ))}
+            <div>
+              <button
+                className={`bg-secondary hover:bg-secondary-light text-white p-2 md:p-3 rounded-l-lg ${currentIndex === 0 ? 'opacity-50 cursor-not-allowed' : ''}`}
+                onClick={handlePrev}
+                disabled={currentIndex === 0}
+              >
+                <MdKeyboardArrowLeft className="w-5 h-5" />
+              </button>
+              <button
+                className={`bg-secondary hover:bg-secondary-light text-white p-2 md:p-3 rounded-r-lg  ${disableNext ? 'opacity-50 cursor-not-allowed' : ''}`}
+                onClick={handleNext}
+                disabled={disableNext}
+              >
+                <MdKeyboardArrowRight className="w-5 h-5" />
+              </button>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
