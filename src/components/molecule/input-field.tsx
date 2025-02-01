@@ -7,6 +7,7 @@ interface FieldProps {
   onChange: React.ChangeEventHandler<HTMLInputElement>;
   label: string;
   required?: boolean;
+  error?: string;
 }
 const InputField: FC<FieldProps> = ({
   name,
@@ -15,6 +16,7 @@ const InputField: FC<FieldProps> = ({
   value,
   required = false,
   label,
+  error,
 }) => (
   <div>
     <p className="font-normal mb-2 ">{label}</p>
@@ -26,6 +28,7 @@ const InputField: FC<FieldProps> = ({
       onChange={onChange}
       required={required}
     />
+    <p className="mt-2 text-red-600">{error}</p>
   </div>
 );
 

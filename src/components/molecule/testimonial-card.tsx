@@ -22,8 +22,8 @@ export const TestimonialCard: FC<TestimonialDto> = ({
         className="w-full object-cover rounded-t-lg"
       />
       <div className="p-4">
-        <h6 className="font-medium">{name}</h6>
-        <p className="text-sm mb-1">{company}</p>
+        <h6 className="font-medium capitalize">{name}</h6>
+        <p className="text-sm mb-1 capitalize">{company}</p>
         <p className="italic text-justify">
           {isExpanded ? quote : truncatedQuote}
           <br />

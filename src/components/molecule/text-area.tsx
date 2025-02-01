@@ -9,6 +9,7 @@ interface FieldProps {
   label: string;
   required?: boolean;
   rows?: number;
+  error?: string;
 }
 const TextArea: FC<FieldProps> = ({
   name,
@@ -17,6 +18,7 @@ const TextArea: FC<FieldProps> = ({
   required = false,
   rows = 2,
   label,
+  error,
 }) => (
   <div>
     <p className="font-normal mb-2 ">{label}</p>
@@ -28,6 +30,7 @@ const TextArea: FC<FieldProps> = ({
       required={required}
       rows={rows}
     />
+    <p className="mt-1 text-red-600">{error}</p>
   </div>
 );
 

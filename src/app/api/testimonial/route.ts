@@ -23,7 +23,8 @@ export async function POST(request: NextRequest) {
   try {
     await dbConnect();
     const body = await request.json();
-    const { name, company, quote, image } = body;
+    const { name, company, quote, image, createdAt, isApproved, position } =
+      body;
 
     if (!name || !quote || !image || !company) {
       return NextResponse.json(
@@ -37,7 +38,9 @@ export async function POST(request: NextRequest) {
       company,
       quote,
       image,
-      isApproved: false,
+      isApproved,
+      createdAt,
+      position,
     });
 
     return NextResponse.json(
