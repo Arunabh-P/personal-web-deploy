@@ -21,7 +21,7 @@ body {
 
     --secondary: #0c796e;
     --secondary-light: #4fa493;
-    --secondary-dark: #0f8277;
+    --secondary-dark: rgb(13, 94, 86);
 
     --success: #0f2b31;
     --success-light: #e7eaea;
@@ -41,8 +41,8 @@ body {
     --color-black-200: #252525;
     --color-black-250: #333333;
 
-    --color-gray-50: #e5e5e5;
-    --color-gray-100: #d4d4d4;
+    --color-gray-50: #eeeeee;
+    --color-gray-100: #e5e5e5;
     --color-gray-150: #cfcfd2;
     --color-gray-200: #b9b9b9;
     --color-gray-250: #707070;

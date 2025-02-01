@@ -19,33 +19,35 @@ export async function GET(request: NextRequest) {
   }
 }
 
-// API route to add a testimonial (same file)
 export async function POST(request: NextRequest) {
   try {
     await dbConnect();
-
     const body = await request.json();
+    const { name, company, quote, image } = body;
 
-    // Validate input
-    if (!body.name || !body.message) {
+    if (!name || !quote || !image || !company) {
       return NextResponse.json(
-        { error: 'Name and message are required' },
+        { message: 'Name, quote, company and image are required' },
         { status: 400 }
       );
     }
 
-    const newTestimonial = new Testimonial({
-      name: body.name,
-      message: body.message,
-      company: body.company || '',
+    const newTestimonial = await Testimonial.create({
+      name,
+      company,
+      quote,
+      image,
+      isApproved: false,
     });
 
-    const savedTestimonial = await newTestimonial.save();
-
-    return NextResponse.json(savedTestimonial, { status: 201 });
-  } catch (error) {
     return NextResponse.json(
-      { error: 'Failed to add testimonial' },
+      { success: true, data: newTestimonial },
+      { status: 201 }
+    );
+  } catch (error) {
+    console.error('Error in testimonial submission:', error);
+    return NextResponse.json(
+      { message: 'Error submitting testimonial' },
       { status: 500 }
     );
   }

@@ -1,7 +1,7 @@
 'use client';
+import TestimonialForm from '@/components/form/testimonial-form';
 import { TestimonialCard } from '@/components/molecule/testimonial-card';
 import { Drawer } from '@/components/organism/drawer';
-import UnderConstruction from '@/components/organism/under-construction';
 import { testimonial } from '@/constants/home/testimonial';
 import { TestimonialDto } from '@/types/testimonial';
 import Image from 'next/image';
@@ -50,7 +50,7 @@ const TestimonialTemplate: FC<TestimonialTemplateDto> = ({ data }) => {
   return (
     <>
       <Drawer position="bottom" isOpen={isOpen} onClose={handleClose}>
-        <UnderConstruction />
+        <TestimonialForm />
       </Drawer>
       <div className="section-padding  xl:flex">
         <div className="w-full xl:w-3/12 h-ful flex flex-col justify-center pb-[20px]">
