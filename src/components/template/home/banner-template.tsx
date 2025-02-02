@@ -1,7 +1,7 @@
 import React from 'react';
 
 const BannerTemplate = () => (
-  <div className="h-[85vh] bg-secondary rounded-b-[50px] md:rounded-b-[100px] flex flex-col justify-center items-start section-padding gap-[25px] md:gap-[50px]">
+  <div className="h-[80vh] bg-secondary rounded-b-[50px] md:rounded-b-[100px] flex flex-col justify-center items-start section-padding gap-[25px] md:gap-[50px]">
     <h1 className="text-[42px] md:text-[62px] lg:text-[72px] 2xl:text-[84px]  uppercase font-bold text-white leading-none">
       SOFTWARE <br /> DEVELOPER
     </h1>
