@@ -12,9 +12,7 @@ const SummaryTemplate = () => (
       self-taught development, quickly gaining proficiency in modern web
       technologies. My journey led me to{' '}
       <span className="font-medium">Brototype</span>, where I sharpened my
-      skills in MERN stack development, and soon after, I secured my first
-      professional role as a Frontend Developer at{' '}
-      <span className="font-medium">Codinoz Technologies</span>.
+      skills in MERN stack development.
       <br />
       <br />
       Currently, as a Software Engineer at{' '}
