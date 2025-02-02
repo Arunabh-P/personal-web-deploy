@@ -45,16 +45,18 @@ export const Drawer: FC<DrawerProps> = ({
         className={`fixed h-screen bg-white shadow-2xl z-50 section-padding transition-transform duration-300 ${getPositionClass()}`}
         style={{ transform: getTransformStyle() }}
       >
-        <div className="flex justify-between items-center my-[20px] md:m-0 md:mb-4">
-          <button
-            onClick={onClose}
-            className="text-secondary font-semibold  hover:bg-primary  h-[30px] w-[30px] rounded-full"
-          >
-            ✕
-          </button>
-        </div>
-        <div className="max-h-[90vh] overflow-scroll no-scrollbar">
-          {children}
+        <div>
+          <div className="flex justify-between items-center my-[20px] md:m-0 md:mb-4">
+            <button
+              onClick={onClose}
+              className="text-secondary font-semibold  hover:bg-primary  h-[30px] w-[30px] rounded-full"
+            >
+              ✕
+            </button>
+          </div>
+          <div className="max-h-[90vh] overflow-scroll no-scrollbar">
+            {children}
+          </div>
         </div>
       </div>
     </>

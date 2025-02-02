@@ -4,6 +4,7 @@
 /* eslint-disable max-statements */
 'use client';
 
+import Image from 'next/image';
 import React, { useRef, useState } from 'react';
 import ReactCrop, {
   type Crop,
@@ -143,16 +144,26 @@ const ImageCropper: React.FC<ImageCropperProps> = ({
         <button
           type="button"
           onClick={onCancel}
-          className="px-4 py-2 bg-gray-200 text-gray-800 rounded hover:bg-gray-300"
+          className="bg-white border-2 w-[40px] h-[40px] rounded-lg flex justify-center items-center hover:bg-primary-light border-secondary"
         >
-          Cancel
+          <Image
+            src="https://res.cloudinary.com/dku0lexry/image/upload/v1738501224/personal-website/icons/cross_z1gbtp.png"
+            width={22}
+            height={22}
+            alt="cancel"
+          />
         </button>
         <button
           type="button"
           onClick={handleCropComplete}
-          className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+          className="bg-secondary border-2 w-[40px] h-[40px] rounded-lg flex justify-center items-center hover:bg-secondary-dark border-secondary"
         >
-          Complete Crop
+          <Image
+            src="https://res.cloudinary.com/dku0lexry/image/upload/v1738501614/personal-website/icons/tool-crop-white_kkwb3f.png"
+            width={27}
+            height={27}
+            alt="crop"
+          />
         </button>
       </div>
     </div>
