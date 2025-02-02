@@ -18,7 +18,7 @@ const FooterTemplate = () => {
       </h1>
       <button
         onClick={() => setIsOpen(true)}
-        className="border-2 border-white rounded-full text-white px-4 py-2 text-[16px] md:text-[22px] font-normal"
+        className="border-2 border-white rounded-full text-white px-4 py-2 text-[16px] md:text-[22px] font-normal hover:bg-white hover:text-secondary"
       >
         GET IN TOUCH
       </button>

@@ -7,13 +7,14 @@ export const TestimonialCard: FC<TestimonialDto> = ({
   name,
   company,
   quote,
+  position,
 }) => {
   const [isExpanded, setIsExpanded] = useState(false);
 
   const truncatedQuote =
     quote.length > 100 ? `${quote.slice(0, 100)}...` : quote;
   return (
-    <div className="bg-primary-dark rounded-lg shadow-md w-[260px] h-fit min-h-[475px]">
+    <div className="bg-primary-dark rounded-lg shadow-md w-[260px] h-fit md:min-h-[495px]">
       <Image
         src={image}
         alt={name}
@@ -23,7 +24,10 @@ export const TestimonialCard: FC<TestimonialDto> = ({
       />
       <div className="p-4">
         <h6 className="font-medium capitalize">{name}</h6>
-        <p className="text-sm mb-1 capitalize">{company}</p>
+        <p className="text-sm mb-1 capitalize">
+          {position} <span className="lowercase">{position && 'at '}</span>
+          <span className="capitalize "> {company}</span>
+        </p>
         <p className="italic text-justify">
           {isExpanded ? quote : truncatedQuote}
           <br />

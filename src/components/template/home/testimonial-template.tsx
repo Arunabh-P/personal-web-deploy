@@ -1,3 +1,4 @@
+/* eslint-disable max-statements */
 'use client';
 import TestimonialForm from '@/components/form/testimonial-form';
 import { TestimonialCard } from '@/components/molecule/testimonial-card';
@@ -13,9 +14,11 @@ interface TestimonialTemplateDto {
 }
 const TestimonialTemplate: FC<TestimonialTemplateDto> = ({ data }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [cardsToShow, setCardsToShow] = useState(3);
-  const disableNext = currentIndex * cardsToShow === data.length - cardsToShow;
+  const [page, setPage] = useState(1);
+  const updatedData = data.filter((item) => item.isApproved).reverse();
 
+  const [cardsToShow, setCardsToShow] = useState(0);
+  const disableNext = page * cardsToShow >= updatedData.length;
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth < 640) {
@@ -34,13 +37,15 @@ const TestimonialTemplate: FC<TestimonialTemplateDto> = ({ data }) => {
 
   const handlePrev = () => {
     if (currentIndex > 0) {
-      setCurrentIndex(currentIndex - 1);
+      setCurrentIndex(currentIndex - cardsToShow);
+      setPage(page - 1);
     }
   };
 
   const handleNext = () => {
     if (!disableNext) {
-      setCurrentIndex(currentIndex + 1);
+      setCurrentIndex(currentIndex + cardsToShow);
+      setPage(page + 1);
     }
   };
   const [isOpen, setIsOpen] = useState(false);
@@ -73,7 +78,7 @@ const TestimonialTemplate: FC<TestimonialTemplateDto> = ({ data }) => {
         </div>
         <div className="w-full xl:w-9/12 flex justify-center xl:justify-end">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-[20px]">
-            {data
+            {updatedData
               .slice(currentIndex, currentIndex + cardsToShow)
               .map((item, index) => (
                 <TestimonialCard
@@ -82,6 +87,7 @@ const TestimonialTemplate: FC<TestimonialTemplateDto> = ({ data }) => {
                   name={item.name}
                   company={item.company}
                   quote={item.quote}
+                  position={item.position}
                 />
               ))}
             <div>
