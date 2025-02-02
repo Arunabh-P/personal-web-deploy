@@ -36,7 +36,6 @@ export async function POST(request: NextRequest) {
           width: 800,
           height: 800,
           crop: 'limit',
-          gravity: 'face',
           quality: 100,
         },
         {
