@@ -22,7 +22,7 @@ export const Modal: FC<ModalProps> = ({ children, isOpen, onClose }) => (
               transform: isOpen ? 'scale(1)' : 'scale(0.95)',
             }}
           >
-            <div className="p-6  w-fit">
+            <div className="p-6  w-fit ">
               <div className="flex justify-between items-center mb-4">
                 <button
                   onClick={onClose}

@@ -18,8 +18,8 @@ interface ImageCropperProps {
   onCancel: () => void;
 }
 
-const MAX_WIDTH = 500;
-const MAX_HEIGHT = 500;
+const MAX_WIDTH = 320;
+const MAX_HEIGHT = 320;
 
 const ImageCropper: React.FC<ImageCropperProps> = ({
   imageUrl,
@@ -118,7 +118,7 @@ const ImageCropper: React.FC<ImageCropperProps> = ({
   };
 
   return (
-    <div className="w-fit">
+    <div className="w-fit  max-w-[320px]">
       <ReactCrop
         crop={crop}
         onChange={(c) => setCrop(c)}
