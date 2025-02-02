@@ -55,7 +55,7 @@ const TestimonialTemplate: FC<TestimonialTemplateDto> = ({ data }) => {
   return (
     <>
       <Drawer position="bottom" isOpen={isOpen} onClose={handleClose}>
-        <TestimonialForm />
+        <TestimonialForm onClose={handleClose} />
       </Drawer>
       <div className="section-padding  xl:flex">
         <div className="w-full xl:w-3/12 h-ful flex flex-col justify-center pb-[20px]">

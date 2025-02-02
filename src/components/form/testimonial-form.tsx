@@ -2,14 +2,17 @@
 /* eslint-disable max-lines-per-function */
 'use client';
 
-import React, { useState, useId, useEffect } from 'react';
+import React, { useState, useId, useEffect, FC } from 'react';
 import InputField from '../molecule/input-field';
 import TextArea from '../molecule/text-area';
 import ImageCropper from '../molecule/image-croper';
 import { Modal } from '../organism/modal';
 import UploadProfilePhoto from './profile-photo-upload';
-
-const TestimonialForm = () => {
+import { useToastStore } from '@/store/tost';
+interface TestimonialFormProps {
+  onClose: () => void;
+}
+const TestimonialForm: FC<TestimonialFormProps> = ({ onClose }) => {
   const formId = useId();
   const imageUploadId = useId();
 
@@ -31,7 +34,7 @@ const TestimonialForm = () => {
   useEffect(() => {
     setIsMounted(true);
   }, []);
-
+  const { showToast } = useToastStore();
   const validateForm = () => {
     const newErrors: Record<string, string> = {};
 
@@ -85,7 +88,6 @@ const TestimonialForm = () => {
     }
 
     setLoading(true);
-    setStatus('Submitting...');
 
     try {
       let imageUrl = '';
@@ -117,10 +119,11 @@ const TestimonialForm = () => {
       });
 
       if (response.ok) {
-        setStatus('Testimonial submitted successfully!');
         setFormData({ name: '', position: '', company: '', quote: '' });
         setImage(null);
         setPreviewUrl('');
+        onClose();
+        showToast('Success', 'Voice added successfully');
       } else {
         const error = await response.json();
         setStatus(error.message || 'Failed to submit testimonial');
@@ -197,7 +200,7 @@ const TestimonialForm = () => {
           disabled={loading}
           className={`w-full py-2 h-[50px] border-2 border-secondary rounded-xl md:w-1/2 uppercase font-bold shadow-sm text-white bg-secondary hover:bg-secondary-dark ${loading ? 'opacity-50 cursor-not-allowed' : ''}`}
         >
-          {loading ? 'Submitting...' : 'Submit your voice'}
+          Submit your voice
         </button>
         {status && (
           <p
