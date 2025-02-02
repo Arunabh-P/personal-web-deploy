@@ -32,8 +32,18 @@ export async function POST(request: NextRequest) {
       folder: 'personal-website/testimonial-profile-images',
       allowed_formats: ['jpg', 'png', 'jpeg', 'gif', 'webp'],
       transformation: [
-        { width: 800, height: 800, crop: 'limit' },
-        { quality: 'auto:best' },
+        {
+          width: 800,
+          height: 800,
+          crop: 'limit',
+          gravity: 'face',
+          quality: 100,
+        },
+        {
+          fetch_format: 'auto',
+          quality: 'auto:best',
+          dpr: '2.0',
+        },
       ],
     });
 
