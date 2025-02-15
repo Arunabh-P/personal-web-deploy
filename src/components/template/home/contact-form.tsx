@@ -66,9 +66,9 @@ export const ContactForm: FC<FormProps> = ({ onClose }) => {
           name: formData.name,
           subject: 'Thank you for contacting us',
           body: `<div style="border: 1px solid #4fa493; padding: 10px; border-radius: 8px; font-size: 16px; text-align: start;">
-        <h5 style="text-transform: capitalize; margin-bottom: 5px; font-size: 16px;">
+        <p style="text-transform: capitalize; margin-bottom: 5px; font-size: 16px;">
             Hello ${formData.name}!
-        </h5>
+        </p>
         <p style="font-size: 16px;">
             Thank you for submitting the form. I will reach out to you soon!
         </p>
