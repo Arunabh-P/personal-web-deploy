@@ -8,6 +8,7 @@ interface FieldProps {
   label: string;
   required?: boolean;
   error?: string;
+  className?: string;
 }
 const InputField: FC<FieldProps> = ({
   name,
@@ -17,11 +18,12 @@ const InputField: FC<FieldProps> = ({
   required = false,
   label,
   error,
+  className,
 }) => (
-  <div>
+  <div className="flex flex-col items-start">
     <p className="font-normal mb-2 ">{label}</p>
     <input
-      className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+      className={`shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline ${className}`}
       type={type}
       name={name}
       value={value}
