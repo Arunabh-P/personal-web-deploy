@@ -5,9 +5,12 @@
 import InputField from '@/components/molecule/input-field';
 import PhoneInputField from '@/components/molecule/phone-input';
 import TextArea from '@/components/molecule/text-area';
-import { useState } from 'react';
-
-export default function ContactForm() {
+import { useToastStore } from '@/store/tost';
+import { FC, useState } from 'react';
+interface FormProps {
+  onClose: () => void;
+}
+export const ContactForm: FC<FormProps> = ({ onClose }) => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -16,7 +19,7 @@ export default function ContactForm() {
   });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [success, setSuccess] = useState(false);
+  const { showToast } = useToastStore();
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -38,8 +41,6 @@ export default function ContactForm() {
     e.preventDefault();
     setLoading(true);
     setError(null);
-    setSuccess(false);
-
     try {
       // First, save to database
       const saveResponse = await fetch('/api/contact-us', {
@@ -64,15 +65,25 @@ export default function ContactForm() {
           to: formData.email,
           name: formData.name,
           subject: 'Thank you for contacting us',
-          body: `<h1>Hello ${formData.name}!</h1><p>Thank you for submitting the form. I will reach out to you soon!</p>`,
+          body: `<div style="border: 1px solid #4fa493; padding: 10px; border-radius: 8px; font-size: 16px; text-align: start;">
+        <h5 style="text-transform: capitalize; margin-bottom: 5px; font-size: 16px;">
+            Hello ${formData.name}!
+        </h5>
+        <p style="font-size: 16px;">
+            Thank you for submitting the form. I will reach out to you soon!
+        </p>
+    </div>`,
         }),
       });
 
       if (!emailResponse.ok) {
         throw new Error('Failed to send email');
       }
-
-      setSuccess(true);
+      onClose();
+      showToast(
+        'Success',
+        'Thank you for your message! I’ll be in touch soon.'
+      );
       setFormData({
         name: '',
         email: '',
@@ -88,6 +99,9 @@ export default function ContactForm() {
 
   return (
     <div className="max-w-md mx-auto p-6">
+      <h3 className="text-center pb-6 font-medium text-secondary">
+        Get in Touch
+      </h3>
       <form onSubmit={handleSubmit} className="space-y-4">
         <InputField
           type="text"
@@ -126,7 +140,7 @@ export default function ContactForm() {
           disabled={loading}
           className={`w-full py-2 h-[50px] border-2 rounded-md border-secondary uppercase font-bold shadow-sm text-white bg-secondary hover:bg-secondary-dark ${loading ? 'opacity-50 cursor-not-allowed' : ''}`}
         >
-          {loading ? 'Submitting...' : 'Submit'}
+          Submit
         </button>
 
         {error && (
@@ -134,13 +148,7 @@ export default function ContactForm() {
             {error}
           </div>
         )}
-
-        {success && (
-          <div className="mt-2 text-sm text-green-500" role="alert">
-            Thank you for your message! We'll be in touch soon.
-          </div>
-        )}
       </form>
     </div>
   );
-}
+};

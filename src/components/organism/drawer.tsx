@@ -42,7 +42,7 @@ export const Drawer: FC<DrawerProps> = ({
       )}
 
       <div
-        className={`fixed h-screen bg-white shadow-2xl z-50 section-padding transition-transform duration-300 ${getPositionClass()}`}
+        className={`fixed h-screen  bg-white shadow-2xl z-50 section-padding transition-transform duration-300 ${getPositionClass()}`}
         style={{ transform: getTransformStyle() }}
       >
         <div>

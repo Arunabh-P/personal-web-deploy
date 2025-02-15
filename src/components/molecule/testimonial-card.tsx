@@ -14,14 +14,23 @@ export const TestimonialCard: FC<TestimonialDto> = ({
   const truncatedQuote =
     quote.length > 100 ? `${quote.slice(0, 100)}...` : quote;
   return (
-    <div className="bg-primary-dark rounded-lg shadow-md w-[260px] h-fit md:min-h-[495px]">
-      <Image
+    <div className="bg-primary-dark rounded-lg shadow-md w-[260px] h-fit md:min-h-[355px]">
+      {/* <Image
         src={image}
         alt={name}
         width={260}
         height={260}
         className="w-full object-cover rounded-t-lg"
-      />
+      /> */}
+      <div className="flex justify-center mt-[30px]">
+        <Image
+          src={image}
+          alt={name}
+          width={80}
+          height={80}
+          className="rounded-full shadow-md"
+        />
+      </div>
       <div className="p-4">
         <h6 className="font-medium capitalize">{name}</h6>
         <p className="text-sm mb-1 capitalize">
